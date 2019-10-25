@@ -1,7 +1,6 @@
 import React from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-
-import theme from '../utils/theme';
+import { createGlobalStyle } from 'styled-components';
+import AppLayout from '../layouts/AppLayout';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -25,10 +24,22 @@ const GlobalStyle = createGlobalStyle`
   dd {
     margin: 0;
   }
+  html {
+    min-height: 100%;
+    width: 100%;
+  }
   body {
-    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
   }
   ul[class],
   ol[class] {
@@ -42,13 +53,18 @@ const GlobalStyle = createGlobalStyle`
   a:not([class]) {
     text-decoration-skip-ink: auto;
   }
+  #root {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <GlobalStyle />
-    </ThemeProvider>
+      <AppLayout></AppLayout>
+    </>
   );
 }
 
