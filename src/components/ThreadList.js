@@ -5,7 +5,7 @@ import { Box } from 'rebass/styled-components';
 import theme from '../utils/theme';
 
 const StyledThreadList = styled(Box)`
-  grid-area: threads;
+  grid-area: secondary-sidebar;
 `;
 
 function ThreadList({ threads, setThread }) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Box } from 'rebass/styled-components';
 
-import ChannelList from './ChannelList';
+import Sidebar from './Sidebar';
 import ThreadList from './ThreadList';
 import Thread from './Thread';
 import ChannelApi from '../api/ChannelApi';
@@ -57,7 +57,7 @@ const StyledApp = styled(Box)`
   width: 100vw;
   height: 100vh;
   overflow: hidden auto;
-  grid-template-areas: 'channels threads chat';
+  grid-template-areas: 'primary-sidebar secondary-sidebar main';
   grid-template-rows: 100%;
   grid-template-columns: 14em 21em 1fr;
 `;
@@ -81,7 +81,7 @@ function App() {
   return (
     <StyledApp>
       <GlobalStyle />
-      <ChannelList channels={channels} setChannel={setChannel} />
+      <Sidebar channels={channels} setChannel={setChannel} />
       <ThreadList threads={threads} setThread={setThread} />
       <Thread thread={thread} />
     </StyledApp>

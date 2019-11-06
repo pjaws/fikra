@@ -1,25 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box } from 'rebass/styled-components';
+import { Box, Heading } from 'rebass/styled-components';
+import { Hash } from 'react-feather';
+
 import theme from '../utils/theme';
 
-const StyledChannelList = styled(Box)`
-  grid-area: channels;
+const Container = styled(Box)`
+  font-size: ${theme.fontSizes[2]}px;
+`;
+
+const List = styled.ul`
+  list-style-type: none;
+`;
+
+const ListItem = styled.li`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: ${theme.space[1]}px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
+const ListItemIcon = styled(Box)`
+  display: flex;
+  align-items: center;
 `;
 
 function ChannelList({ channels, setChannel }) {
   return (
-    <StyledChannelList bg={theme.colors.offwhite} p={3}>
-      <ul>
+    <Container px={3} mt={3}>
+      <Heading
+        fontSize={1}
+        as="h2"
+        mb={2}
+        css={{ letterSpacing: 'calc(14px * 0.02)' }}
+      >
+        Channels
+      </Heading>
+      <List>
         {channels.map((channel) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/click-events-have-key-events
-          <li key={channel.id} onClick={() => setChannel(channel)}>
+          <ListItem key={channel.id} onClick={() => setChannel(channel)}>
+            <ListItemIcon mr={2}>
+              <Hash size={theme.fontSizes[2]} />
+            </ListItemIcon>
             {channel.title}
-          </li>
+          </ListItem>
         ))}
-      </ul>
-    </StyledChannelList>
+      </List>
+    </Container>
   );
 }
 
