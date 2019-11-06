@@ -5,8 +5,8 @@ import { Box } from 'rebass/styled-components';
 import ChannelList from './ChannelList';
 import ThreadList from './ThreadList';
 import Thread from './Thread';
-import ChannelsApi from '../api/ChannelsApi';
-import ThreadsApi from '../api/ThreadsApi';
+import ChannelApi from '../api/ChannelApi';
+import ThreadApi from '../api/ThreadApi';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -69,12 +69,12 @@ function App() {
   const [thread, setThread] = useState({});
 
   useEffect(() => {
-    const nextChannels = ChannelsApi.find();
+    const nextChannels = ChannelApi.find();
     setChannels(nextChannels);
   }, []);
 
   useEffect(() => {
-    const nextThreads = ThreadsApi.getByChannelId(channel.id);
+    const nextThreads = ThreadApi.getByChannelId(channel.id);
     setThreads(nextThreads);
   }, [channel]);
 
