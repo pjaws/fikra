@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown/with-html';
 import { Heading, Flex, Box } from 'rebass/styled-components';
-
-const ThreadParagraph = styled.p`
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-`;
 
 function Thread({ thread }) {
   return (
@@ -24,7 +17,7 @@ function Thread({ thread }) {
           <Heading as="h1">{thread.title}</Heading>
         </header>
         <Box as="main" mt={2}>
-          <ThreadParagraph as="p">{thread.body}</ThreadParagraph>
+          <ReactMarkdown source={thread.body} escapeHtml={false} />
         </Box>
       </Flex>
     </Box>
