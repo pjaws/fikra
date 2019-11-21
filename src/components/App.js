@@ -82,7 +82,7 @@ function App() {
   }, [channel]);
 
   return (
-    <StyledApp>
+    <StyledApp data-testid="app">
       <GlobalStyle />
       <Sidebar channels={channels} setChannel={setChannel} />
       <ThreadList threads={threads} setThread={setThread} />
