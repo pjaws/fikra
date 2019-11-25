@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { Box } from 'rebass/styled-components';
+import { Router } from '@reach/router';
+import { createGlobalStyle } from 'styled-components';
 
-import Sidebar from './Sidebar';
-import ThreadList from './ThreadList';
-import Thread from './Thread';
 import ChannelApi from '../api/ChannelApi';
-import ThreadApi from '../api/ThreadApi';
+import AppLayout from '../layouts/AppLayout';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -55,40 +52,26 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const StyledApp = styled(Box)`
-  display: grid;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden auto;
-  grid-template-areas: 'primary-sidebar secondary-sidebar main';
-  grid-template-rows: 100%;
-  grid-template-columns: 14em 21em 1fr;
-`;
-
-function App() {
+const App = () => {
   const [channels, setChannels] = useState([]);
-  const [channel, setChannel] = useState({});
-  const [threads, setThreads] = useState([]);
-  const [thread, setThread] = useState({});
+
+  const fetchChannels = async () => {
+    const nextChannels = await ChannelApi.find();
+    setChannels(nextChannels);
+  };
 
   useEffect(() => {
-    const nextChannels = ChannelApi.find();
-    setChannels(nextChannels);
+    fetchChannels();
   }, []);
 
-  useEffect(() => {
-    const nextThreads = ThreadApi.getByChannelId(channel.id);
-    setThreads(nextThreads);
-  }, [channel]);
-
   return (
-    <StyledApp data-testid="app">
+    <>
       <GlobalStyle />
-      <Sidebar channels={channels} setChannel={setChannel} />
-      <ThreadList threads={threads} setThread={setThread} />
-      <Thread thread={thread} />
-    </StyledApp>
+      <Router>
+        <AppLayout default path="/" channels={channels} />
+      </Router>
+    </>
   );
-}
+};
 
 export default App;

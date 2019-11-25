@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown/with-html';
 import { Heading, Flex, Box } from 'rebass/styled-components';
 
+const StyledThread = styled.article`
+  grid-area: thread-main;
+`;
+
 function Thread({ thread }) {
   return (
-    <Box as="article">
+    <StyledThread>
       <Flex
         as="section"
         flexDirection="column"
@@ -20,7 +25,7 @@ function Thread({ thread }) {
           <ReactMarkdown source={thread.body} escapeHtml={false} />
         </Box>
       </Flex>
-    </Box>
+    </StyledThread>
   );
 }
 

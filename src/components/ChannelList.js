@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Heading } from 'rebass/styled-components';
+import { Link } from '@reach/router';
 import { Hash } from 'react-feather';
 
 import theme from '../utils/theme';
@@ -15,13 +16,21 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   margin-top: ${theme.space[1]}px;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  &:hover {
+    color: ${theme.colors.grays[2]};
+  }
+
+  & > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
   }
 `;
 
@@ -30,7 +39,7 @@ const ListItemIcon = styled(Box)`
   align-items: center;
 `;
 
-function ChannelList({ channels, setChannel }) {
+function ChannelList({ channels }) {
   return (
     <Container px={3} mt={3}>
       <Heading
@@ -43,12 +52,13 @@ function ChannelList({ channels, setChannel }) {
       </Heading>
       <List>
         {channels.map((channel) => (
-          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/click-events-have-key-events
-          <ListItem key={channel.id} onClick={() => setChannel(channel)}>
-            <ListItemIcon mr={2}>
-              <Hash size={theme.fontSizes[2]} />
-            </ListItemIcon>
-            {channel.title}
+          <ListItem key={channel.id}>
+            <Link to={`/ch/${channel.id}`}>
+              <ListItemIcon mr={2}>
+                <Hash size={theme.fontSizes[2]} />
+              </ListItemIcon>
+              {channel.title}
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -65,7 +75,6 @@ ChannelList.propTypes = {
       updatedAt: PropTypes.string,
     }),
   ).isRequired,
-  setChannel: PropTypes.func.isRequired,
 };
 
 export default ChannelList;

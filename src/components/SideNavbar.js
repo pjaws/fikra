@@ -8,7 +8,7 @@ import theme from '../utils/theme';
 import ChannelList from './ChannelList';
 
 const StyledSidebar = styled(Flex)`
-  grid-area: primary-sidebar;
+  grid-area: side-navbar;
   transition: all 0.3s ease;
   background: ${theme.colors.grays[5]};
   color: ${theme.colors.offwhite};
@@ -39,7 +39,7 @@ const LinkListItemIcon = styled(Box)`
   align-items: center;
 `;
 
-function Sidebar({ channels, setChannel, ...props }) {
+function SideNavbar({ channels, ...props }) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <StyledSidebar flexDirection="column" flexWrap="nowrap" {...props}>
@@ -59,12 +59,12 @@ function Sidebar({ channels, setChannel, ...props }) {
           </LinkListItem>
         </LinkList>
       </Links>
-      <ChannelList channels={channels} setChannel={setChannel} />
+      <ChannelList channels={channels} />
     </StyledSidebar>
   );
 }
 
-Sidebar.propTypes = {
+SideNavbar.propTypes = {
   channels: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -76,4 +76,4 @@ Sidebar.propTypes = {
   setChannel: PropTypes.func.isRequired,
 };
 
-export default Sidebar;
+export default SideNavbar;
