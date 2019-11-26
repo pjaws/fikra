@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Box } from 'rebass';
-import { Router } from '@reach/router';
+import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 
+import ThreadApi from '../api/ThreadApi';
 import ThreadList from '../components/ThreadList';
 import ThreadsHome from '../components/ThreadsHome';
 import Thread from '../components/Thread';
@@ -16,13 +17,40 @@ const StyledThreadLayout = styled(Box)`
 `;
 
 const ThreadLayout = () => {
+  const { channelId } = useParams();
+  const match = useRouteMatch();
+  const [threads, setThreads] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchThreads = async () => {
+      try {
+        const nextThreads = await ThreadApi.getByChannelId(channelId);
+        setThreads(nextThreads);
+      } catch (e) {
+        setError(e);
+      }
+    };
+
+    fetchThreads();
+  }, [channelId]);
+
   return (
     <StyledThreadLayout data-testid="ThreadLayout">
-      <ThreadList />
-      <Router>
-        <ThreadsHome default path="/" />
-        <Thread path="/:threadId" />
-      </Router>
+      {error && <div>{error}</div>}
+      {threads && (
+        <>
+          <ThreadList threads={threads} channelId={channelId} />
+          <Switch>
+            <Route exact path={match.path}>
+              <ThreadsHome />
+            </Route>
+            <Route path={`${match.path}/:threadId`}>
+              <Thread />
+            </Route>
+          </Switch>
+        </>
+      )}
     </StyledThreadLayout>
   );
 };

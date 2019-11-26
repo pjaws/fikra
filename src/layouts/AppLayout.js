@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from 'rebass/styled-components';
-import { Router } from '@reach/router';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import SideNavbar from '../components/SideNavbar';
 import Feed from '../components/Feed';
@@ -20,13 +20,19 @@ const StyledAppLayout = styled(Box)`
 
 const AppLayout = ({ channels, ...rest }) => {
   return (
-    <StyledAppLayout data-testid="AppLayout" {...rest}>
-      <SideNavbar channels={channels} />
-      <Router>
-        <Feed default path="/feed" />
-        <ChannelLayout path="/ch/:channelId" />
-      </Router>
-    </StyledAppLayout>
+    <Router>
+      <StyledAppLayout data-testid="AppLayout" {...rest}>
+        <SideNavbar channels={channels} />
+        <Switch>
+          <Route exact path="/">
+            <Feed />
+          </Route>
+          <Route path="/ch/:channelId">
+            <ChannelLayout />
+          </Route>
+        </Switch>
+      </StyledAppLayout>
+    </Router>
   );
 };
 

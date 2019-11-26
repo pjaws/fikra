@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Heading, Text } from 'rebass/styled-components';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import theme from '../utils/theme';
 import Truncate from './Truncate';
@@ -35,14 +35,14 @@ const ListItem = styled.li`
   }
 `;
 
-function ThreadList({ threads }) {
+function ThreadList({ threads, channelId }) {
   return (
     <Container bg={theme.colors.grays[0]} p={3}>
       {threads && (
         <List>
           {threads.map((thread) => (
             <ListItem key={thread.id}>
-              <Link to={`/${thread.id}`}>
+              <Link to={`/ch/${channelId}/threads/${thread.id}`}>
                 <section>
                   <header>
                     <Heading as="h1" fontSize={2}>
@@ -74,6 +74,7 @@ ThreadList.propTypes = {
       updatedAt: PropTypes.string,
     }),
   ).isRequired,
+  channelId: PropTypes.string.isRequired,
 };
 
 export default ThreadList;

@@ -1,6 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Router } from '@reach/router';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+  useParams,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import { Box } from 'rebass/styled-components';
 
@@ -16,21 +21,25 @@ const StyledChannelLayout = styled(Box)`
   height: 100%;
 `;
 
-const ChannelLayout = ({ channelId, ...rest }) => {
+const ChannelLayout = ({ ...props }) => {
+  const match = useRouteMatch();
+  const { channelId } = useParams();
+
   return (
-    <StyledChannelLayout data-testid="ChannelLayout" {...rest}>
-      <TopNavbar channelId={channelId} />
-      <Router>
-        <ThreadLayout default path={`/ch/${channelId}/threads`} />
+    <StyledChannelLayout data-testid="ChannelLayout" {...props}>
+      <TopNavbar />
+      <Switch>
+        <Route exact path={match.path}>
+          <Redirect to={`/ch/${channelId}/threads`} />
+        </Route>
+        <Route path={`${match.path}/threads`}>
+          <ThreadLayout />
+        </Route>
         {/* <ChatLayout path={`/ch/${channelId}/chat`} />
         <ProjectsLayout path={`/ch/${channelId}/projects`} /> */}
-      </Router>
+      </Switch>
     </StyledChannelLayout>
   );
-};
-
-ChannelLayout.propTypes = {
-  channelId: PropTypes.string.isRequired,
 };
 
 export default ChannelLayout;

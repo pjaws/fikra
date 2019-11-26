@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 
 import theme from '../utils/theme';
 
-const NavbarItem = styled(Link)`
+const NavbarItem = styled(NavLink)`
   display: flex;
   align-items: center;
   margin-left: ${theme.space[4]}px;
   padding: 0 ${theme.space[1]}px;
   color: ${theme.colors.offwhite};
   text-decoration: none;
-  border-bottom: ${(props) =>
-    props.active ? `2px solid ${theme.colors.offwhite}` : 'none'};
 
   &:first-child {
     margin-left: ${theme.space[3]}px;
@@ -47,7 +45,7 @@ const TopNavbarItem = ({ Icon, title, url, ...rest }) => {
 };
 
 TopNavbarItem.propTypes = {
-  Icon: PropTypes.element.isRequired,
+  Icon: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };

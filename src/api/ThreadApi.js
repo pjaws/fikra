@@ -22,4 +22,9 @@ export default {
   getByChannelId(id) {
     return this.find().filter((c) => c.channelId === id);
   },
+  get(id) {
+    const [thread] = this.find().filter((c) => c.id === id);
+
+    return thread;
+  },
 };

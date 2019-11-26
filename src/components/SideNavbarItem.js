@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import theme from '../utils/theme';
 
@@ -44,7 +44,7 @@ const SideNavbarItem = ({ Icon, title, url, ...rest }) => {
 };
 
 SideNavbarItem.propTypes = {
-  Icon: PropTypes.element.isRequired,
+  Icon: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };

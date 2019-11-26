@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Heading } from 'rebass/styled-components';
-import { Link } from '@reach/router';
+import { NavLink } from 'react-router-dom';
 import { Hash } from 'react-feather';
 
 import theme from '../utils/theme';
@@ -53,12 +53,12 @@ function ChannelList({ channels }) {
       <List>
         {channels.map((channel) => (
           <ListItem key={channel.id}>
-            <Link to={`/ch/${channel.id}`}>
+            <NavLink to={`/ch/${channel.id}`}>
               <ListItemIcon mr={2}>
                 <Hash size={theme.fontSizes[2]} />
               </ListItemIcon>
               {channel.title}
-            </Link>
+            </NavLink>
           </ListItem>
         ))}
       </List>

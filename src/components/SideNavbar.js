@@ -53,7 +53,6 @@ SideNavbar.propTypes = {
       updatedAt: PropTypes.string,
     }),
   ).isRequired,
-  setChannel: PropTypes.func.isRequired,
 };
 
 export default SideNavbar;
