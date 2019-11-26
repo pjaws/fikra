@@ -30,7 +30,7 @@ const ListItemIcon = styled.div`
   margin-right: ${theme.space[2]}px;
 `;
 
-const SideNavbarListItem = ({ Icon, title, url, ...rest }) => {
+const SideNavbarItem = ({ Icon, title, url, ...rest }) => {
   return (
     <ListItem {...rest}>
       <Link to={url}>
@@ -43,10 +43,10 @@ const SideNavbarListItem = ({ Icon, title, url, ...rest }) => {
   );
 };
 
-SideNavbarListItem.propTypes = {
+SideNavbarItem.propTypes = {
   Icon: PropTypes.element.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default SideNavbarListItem;
+export default SideNavbarItem;

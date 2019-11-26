@@ -6,7 +6,7 @@ import { Inbox, Star, Activity } from 'react-feather';
 
 import theme from '../utils/theme';
 import ChannelList from './ChannelList';
-import SideNavbarListItem from './SideNavbarListItem';
+import SideNavbarListItem from './SideNavbarItem';
 
 const StyledSidebar = styled(Flex)`
   grid-area: side-navbar;
