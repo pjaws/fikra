@@ -9,13 +9,16 @@ import ThreadLayout from './ThreadLayout';
 
 const StyledChannelLayout = styled(Box)`
   display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas: 'top-navbar channel-main';
+  grid-template-rows: 40px 1fr;
+  grid-template-areas:
+    'top-navbar'
+    'channel-main';
+  height: 100%;
 `;
 
-const ChannelLayout = ({ channelId }) => {
+const ChannelLayout = ({ channelId, ...rest }) => {
   return (
-    <StyledChannelLayout>
+    <StyledChannelLayout data-testid="ChannelLayout" {...rest}>
       <TopNavbar channelId={channelId} />
       <Router>
         <ThreadLayout default path={`/ch/${channelId}/threads`} />

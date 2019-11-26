@@ -12,11 +12,12 @@ const StyledThreadLayout = styled(Box)`
   display: grid;
   grid-template-columns: 21em 1fr;
   grid-template-areas: 'thread-navbar thread-main';
+  height: 100%;
 `;
 
 const ThreadLayout = () => {
   return (
-    <StyledThreadLayout>
+    <StyledThreadLayout data-testid="ThreadLayout">
       <ThreadList />
       <Router>
         <ThreadsHome default path="/" />

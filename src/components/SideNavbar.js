@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Flex } from 'rebass/styled-components';
-import { Inbox, Star } from 'react-feather';
+import { Inbox, Star, Activity } from 'react-feather';
 
 import theme from '../utils/theme';
 import ChannelList from './ChannelList';
+import SideNavbarListItem from './SideNavbarListItem';
 
 const StyledSidebar = styled(Flex)`
   grid-area: side-navbar;
@@ -23,40 +24,19 @@ const LinkList = styled.ul`
   list-style-type: none;
 `;
 
-const LinkListItem = styled.li`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin-top: ${theme.space[2]}px;
-
-  &:first-child: {
-    margin-top: 0;
-  }
-`;
-
-const LinkListItemIcon = styled(Box)`
-  display: flex;
-  align-items: center;
-`;
-
-function SideNavbar({ channels, ...props }) {
+function SideNavbar({ channels, ...rest }) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StyledSidebar flexDirection="column" flexWrap="nowrap" {...props}>
+    <StyledSidebar
+      data-testid="SideNavbar"
+      flexDirection="column"
+      flexWrap="nowrap"
+      {...rest}
+    >
       <Links px={3} mt={3}>
         <LinkList>
-          <LinkListItem>
-            <LinkListItemIcon mr={2}>
-              <Inbox size={theme.fontSizes[2]} />
-            </LinkListItemIcon>
-            Inbox
-          </LinkListItem>
-          <LinkListItem>
-            <LinkListItemIcon mr={2}>
-              <Star size={theme.fontSizes[2]} />
-            </LinkListItemIcon>
-            Favorites
-          </LinkListItem>
+          <SideNavbarListItem Icon={Activity} title="Feed" url="/feed" />
+          <SideNavbarListItem Icon={Inbox} title="Inbox" url="/inbox" />
+          <SideNavbarListItem Icon={Star} title="Favorites" url="/favorites" />
         </LinkList>
       </Links>
       <ChannelList channels={channels} />

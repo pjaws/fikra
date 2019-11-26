@@ -38,26 +38,28 @@ const ListItem = styled.li`
 function ThreadList({ threads }) {
   return (
     <Container bg={theme.colors.grays[0]} p={3}>
-      <List>
-        {threads.map((thread) => (
-          <ListItem key={thread.id}>
-            <Link to={`/${thread.id}`}>
-              <section>
-                <header>
-                  <Heading as="h1" fontSize={2}>
-                    {thread.title}
-                  </Heading>
-                </header>
-                <Box as="article" mt={1}>
-                  <Text fontSize={1}>
-                    <Truncate max={180}>{thread.body}</Truncate>
-                  </Text>
-                </Box>
-              </section>
-            </Link>
-          </ListItem>
-        ))}
-      </List>
+      {threads && (
+        <List>
+          {threads.map((thread) => (
+            <ListItem key={thread.id}>
+              <Link to={`/${thread.id}`}>
+                <section>
+                  <header>
+                    <Heading as="h1" fontSize={2}>
+                      {thread.title}
+                    </Heading>
+                  </header>
+                  <Box as="article" mt={1}>
+                    <Text fontSize={1}>
+                      <Truncate max={180}>{thread.body}</Truncate>
+                    </Text>
+                  </Box>
+                </section>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </Container>
   );
 }
