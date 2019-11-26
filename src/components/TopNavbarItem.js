@@ -35,7 +35,7 @@ const NavbarItemText = styled.div`
   line-height: 1;
 `;
 
-const SideNavbarItem = ({ Icon, title, url, ...rest }) => {
+const TopNavbarItem = ({ Icon, title, url, ...rest }) => {
   return (
     <NavbarItem to={url} {...rest}>
       <NavbarItemIcon>
@@ -46,10 +46,10 @@ const SideNavbarItem = ({ Icon, title, url, ...rest }) => {
   );
 };
 
-SideNavbarItem.propTypes = {
+TopNavbarItem.propTypes = {
   Icon: PropTypes.element.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default SideNavbarItem;
+export default TopNavbarItem;

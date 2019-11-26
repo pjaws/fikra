@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { List, MessageSquare, Clipboard } from 'react-feather';
 
@@ -16,7 +15,7 @@ const StyledTopNavbar = styled.nav`
   color: ${theme.colors.white};
 `;
 
-const TopNavbar = ({ channelId }) => {
+const TopNavbar = () => {
   return (
     <StyledTopNavbar>
       <TopNavbarItem Icon={List} title="Threads" url="threads" />
@@ -24,10 +23,6 @@ const TopNavbar = ({ channelId }) => {
       <TopNavbarItem Icon={Clipboard} title="Projects" url="projects" />
     </StyledTopNavbar>
   );
-};
-
-TopNavbar.propTypes = {
-  channelId: PropTypes.string.isRequired,
 };
 
 export default TopNavbar;
