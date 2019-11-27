@@ -35,7 +35,11 @@ const NavbarItemText = styled.div`
 
 const TopNavbarItem = ({ Icon, title, url, ...rest }) => {
   return (
-    <NavbarItem to={url} {...rest}>
+    <NavbarItem
+      to={url}
+      activeStyle={{ borderBottom: `3px solid ${theme.colors.offwhite}` }}
+      {...rest}
+    >
       <NavbarItemIcon>
         <Icon size={theme.fontSizes[2]} />
       </NavbarItemIcon>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Heading, Text } from 'rebass/styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink, useRouteMatch, useParams } from 'react-router-dom';
 
 import theme from '../utils/theme';
 import Truncate from './Truncate';
@@ -16,11 +16,9 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  margin-top: ${theme.space[1]}px;
-  padding: ${theme.space[1]}px;
-
+  /* margin-top: ${theme.space[1]}px; */
   &:hover {
-    background: ${theme.colors.grays[3]};
+    background: ${theme.colors.grays[1]};
   }
 
   &:first-child {
@@ -30,19 +28,27 @@ const ListItem = styled.li`
   & > a {
     display: flex;
     align-items: center;
+    padding: ${theme.space[3]}px;
     text-decoration: none;
     color: inherit;
   }
 `;
 
-function ThreadList({ threads, channelId }) {
+function ThreadList({ threads }) {
+  const { channelId } = useParams();
+  const match = useRouteMatch();
+  console.log('match', match);
+
   return (
-    <Container bg={theme.colors.grays[0]} p={3}>
+    <Container bg={theme.colors.grays[0]}>
       {threads && (
         <List>
           {threads.map((thread) => (
             <ListItem key={thread.id}>
-              <Link to={`/ch/${channelId}/threads/${thread.id}`}>
+              <NavLink
+                to={`/ch/${channelId}/threads/${thread.id}`}
+                activeStyle={{ background: theme.colors.grays[1] }}
+              >
                 <section>
                   <header>
                     <Heading as="h1" fontSize={2}>
@@ -55,7 +61,7 @@ function ThreadList({ threads, channelId }) {
                     </Text>
                   </Box>
                 </section>
-              </Link>
+              </NavLink>
             </ListItem>
           ))}
         </List>
@@ -74,7 +80,6 @@ ThreadList.propTypes = {
       updatedAt: PropTypes.string,
     }),
   ).isRequired,
-  channelId: PropTypes.string.isRequired,
 };
 
 export default ThreadList;

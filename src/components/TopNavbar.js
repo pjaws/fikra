@@ -14,6 +14,8 @@ const StyledTopNavbar = styled.nav`
   justify-content: flex-start;
   background-color: ${theme.colors.primary};
   color: ${theme.colors.white};
+  z-index: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const TopNavbar = () => {

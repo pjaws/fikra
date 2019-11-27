@@ -13,6 +13,8 @@ const StyledSidebar = styled(Flex)`
   transition: all 0.3s ease;
   background: ${theme.colors.grays[5]};
   color: ${theme.colors.offwhite};
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const Links = styled(Box)`

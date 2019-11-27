@@ -40,7 +40,7 @@ const ThreadLayout = () => {
       {error && <div>{error}</div>}
       {threads && (
         <>
-          <ThreadList threads={threads} channelId={channelId} />
+          <ThreadList threads={threads} />
           <Switch>
             <Route exact path={match.path}>
               <ThreadsHome />

@@ -53,7 +53,10 @@ function ChannelList({ channels }) {
       <List>
         {channels.map((channel) => (
           <ListItem key={channel.id}>
-            <NavLink to={`/ch/${channel.id}`}>
+            <NavLink
+              to={`/ch/${channel.id}`}
+              activeStyle={{ color: theme.colors.grays[2] }}
+            >
               <ListItemIcon mr={2}>
                 <Hash size={theme.fontSizes[2]} />
               </ListItemIcon>
