@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Heading, Text } from 'rebass/styled-components';
-import { NavLink, useRouteMatch, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import theme from '../utils/theme';
 import Truncate from './Truncate';
@@ -36,8 +36,6 @@ const ListItem = styled.li`
 
 function ThreadList({ threads }) {
   const { channelId } = useParams();
-  const match = useRouteMatch();
-  console.log('match', match);
 
   return (
     <Container bg={theme.colors.grays[0]}>

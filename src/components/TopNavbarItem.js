@@ -10,7 +10,7 @@ const NavbarItem = styled(NavLink)`
   align-items: center;
   margin-left: ${theme.space[4]}px;
   padding: 0 ${theme.space[1]}px;
-  color: ${theme.colors.offwhite};
+  color: ${theme.colors.grays[1]};
   text-decoration: none;
 
   &:first-child {
@@ -18,7 +18,7 @@ const NavbarItem = styled(NavLink)`
   }
 
   &:hover {
-    color: ${theme.colors.grays[1]};
+    color: ${theme.colors.offwhite};
   }
 `;
 
@@ -37,7 +37,10 @@ const TopNavbarItem = ({ Icon, title, url, ...rest }) => {
   return (
     <NavbarItem
       to={url}
-      activeStyle={{ borderBottom: `3px solid ${theme.colors.offwhite}` }}
+      activeStyle={{
+        borderBottom: `3px solid ${theme.colors.offwhite}`,
+        color: theme.colors.offwhite,
+      }}
       {...rest}
     >
       <NavbarItemIcon>
