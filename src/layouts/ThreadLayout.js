@@ -6,6 +6,7 @@ import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import ThreadApi from '../api/ThreadApi';
 import ThreadList from '../components/ThreadList';
 import ThreadsHome from '../components/ThreadsHome';
+import ThreadEditor from '../components/ThreadEditor';
 import Thread from '../components/Thread';
 
 const StyledThreadLayout = styled(Box)`
@@ -44,6 +45,9 @@ const ThreadLayout = () => {
           <Switch>
             <Route exact path={match.path}>
               <ThreadsHome />
+            </Route>
+            <Route exact path={`${match.path}/new`}>
+              <ThreadEditor />
             </Route>
             <Route path={`${match.path}/:threadId`}>
               <Thread />
