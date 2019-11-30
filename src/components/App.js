@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Router } from '@reach/router';
 import { createGlobalStyle } from 'styled-components';
 
 import ChannelApi from '../api/ChannelApi';
@@ -67,9 +66,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Router>
-        <AppLayout default path="/" channels={channels} />
-      </Router>
+      <AppLayout channels={channels} />
     </>
   );
 };
