@@ -43,15 +43,9 @@ const ThreadLayout = () => {
         <>
           <ThreadList threads={threads} />
           <Switch>
-            <Route exact path={match.path}>
-              <ThreadsHome />
-            </Route>
-            <Route exact path={`${match.path}/new`}>
-              <ThreadEditor />
-            </Route>
-            <Route path={`${match.path}/:threadId`}>
-              <Thread />
-            </Route>
+            <Route exact path={match.path} component={ThreadsHome} />
+            <Route exact path={`${match.path}/new`} component={ThreadEditor} />
+            <Route path={`${match.path}/:threadId`} component={Thread} />
           </Switch>
         </>
       )}
